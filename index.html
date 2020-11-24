@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge" name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mygooglemap</title>
+<style>
+  #map{
+  width: 100%;
+  height:900px;
+}
+/*teksto lentelekje stilius */
+span.map1-title {
+  position: absolute;
+    top: 300px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
+/*pirmo markerio divo stailas koks atsidaro langas paspaudus pirma markeri*/
+.welcomeDiv{
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 1500px;
+    height: 800px;
+    background-color: white;
+    opacity: 0.9;
+}
+
+/*pirmo mygtuko style koks bus teisingas*/
+.mygtukas1 {
+    position: absolute;
+    top: 500px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 20px;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+.mygtukas1:hover{
+      background-color: grey;
+      opacity: 0.8;
+    }
+
+    /*antro mygtuko style neteisingas*/
+
+    .mygtukas2 {
+        position: absolute;
+        top: 400px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 50px;
+        border: 1px solid black;
+        background-color: white;
+        font-size: 20px;
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+    .mygtukas2:hover{
+          background-color: grey;
+          opacity: 0.8;
+        }
+/*uzdarymo mygtukas */
+.uzdaryti
+{
+  float: right;
+}
+/*mygtukai kai teisingas neteisingas stilius*/
+
+    .teisingas
+    {
+      color: green;
+      font-size: 50px;
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .neteisingas
+    {
+      color: red;
+      font-size: 50px;
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .surask
+    {
+      border: none;
+      background-color: none;
+      font-size: 20px;
+      transition: 0.3s;
+      margin-left: 80%;
+      margin-top: 46%;
+    }
+  .mygtukas2:hover{
+        background-color: grey;
+        opacity: 0.8;
+    }
+  .video{
+    width:90%;
+    height:80%;
+    margin-left:5%;
+    margin-top: 3%;
+  }
+  .atsakyk{
+    border: none;
+    background-color: none;
+    margin-left: 90%;
+    margin-top: 2%;
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<!-- pirmos grupes pirmas markeris-->
+
+  <div id="surask" class="welcomeDiv" style="display:none;">
+    <span class="map1-title">Kokio amžiaus tradicijas mena Žemaičių muziejuje „Alka“ saugomas grafų Gorskių lobis?</span>
+    <button id="surask" class="surask" onclick="kitas()">Surask Atsakymą</button>
+    <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+  <div id="video" class="welcomeDiv" style="display:none;">
+      <span class="map1-title"></span>
+      <iframe class="video" src="https://www.youtube.com/embed/sEDKV_i0O7w">
+  </iframe>
+      <button id="atsakyk" class="atsakyk" onclick="sekantis()">Atsakyti</button>
+      <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+  <div id="welcomeDiv" class="welcomeDiv" style="display:none;">
+      <span class="map1-title">Kokio amžiaus tradicijas mena Žemaičių muziejuje „Alka“ saugomas grafų Gorskių lobis?</span>
+      <button id="pirmas_pirmo" class="mygtukas1" onClick="tei(this)">18a. vid</button>
+      <button id="antras_pirmo" class="mygtukas2" onClick="nei(this)">15a.</button>
+      <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+  <!--antras markeris-->
+
+  <div id="surask2" class="welcomeDiv" style="display:none;">
+      <span class="map1-title">Kokias Oginskių tradicijas mena pristatyto medalio detalės:  žalias marmuras, lupa, balto marmuras?</span>
+      <button id="surask2" class="surask" onclick="kitas2()">Surask Atsakymą</button>
+      <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+  <div id="video2" class="welcomeDiv" style="display:none;">
+      <span class="map1-title"></span>
+      <iframe class="video" src="https://www.youtube.com/embed/RPiSOFX0yE8">
+  </iframe>
+      <button id="atsakyk2" class="atsakyk" onclick="sekantis2()">atsakyk</button>
+      <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+  <div id="welcomeDiv2" class="welcomeDiv" style="display:none;">
+      <span class="map1-title">Kokias Oginskių tradicijas mena pristatyto medalio detalės:  žalias marmuras, lupa, balto marmuras?</span>
+      <button id="pirmas_pirmo2" class="mygtukas1" onClick="tei2(this)">Parkų puoselėjimą, istorinės atminties saugojimą, architektūrinį skonį</button>
+      <button id="antras_pirmo2" class="mygtukas2" onClick="nei2(this)">Oginskių herbo kūrimo</button>
+      <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+  </div>
+
+<!--trecias markeris-->
+
+    <div id="surask3" class="welcomeDiv" style="display:none;">
+        <span class="map1-title">Ką reiškia susižadėti su jūra?</span>
+        <button id="surask3" class="surask" onclick="kitas3()">Surask Atsakymą</button>
+        <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+    </div>
+
+    <div id="video3" class="welcomeDiv" style="display:none;">
+        <span class="map1-title"></span>
+        <iframe class="video" src="https://www.youtube.com/embed/qTIIc5XrlIs">
+  </iframe>
+        <button id="atsakyk3" class="atsakyk" onclick="sekantis3()">Atsakyti</button>
+        <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+    </div>
+
+    <div id="welcomeDiv3" class="welcomeDiv" style="display:none;">
+        <span class="map1-title">Ką reiškia susižadėti su jūra?</span>
+        <button id="pirmas_pirmo3" class="mygtukas1" onClick="tei3(this)">Tapti jūros šeimininku - gyventi santarvėje su jūra</button>
+        <button id="antras_pirmo3" class="mygtukas2" onClick="nei3(this)">Tapti jūreiviu</button>
+        <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+    </div>
+
+    <!-- antros grupes pirmas markeris-->
+
+      <div id="surask2_1" class="welcomeDiv" style="display:none;">
+        <span class="map1-title">Kaip vadinasi pirmas lietuviškas garsinis marionečių filmas?</span>
+        <button id="surask2_1" class="surask" onclick="kitas2_1()">Surask Atsakymą</button>
+        <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+      <div id="video2_1" class="welcomeDiv" style="display:none;">
+          <span class="map1-title"></span>
+          <iframe class="video" src="https://www.youtube.com/embed/Nh5BT9K_6YU">
+      </iframe>
+          <button id="atsakyk2_1" class="atsakyk" onclick="sekantis2_1()">Atsakyti</button>
+          <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+      <div id="welcomeDiv2_1" class="welcomeDiv" style="display:none;">
+          <span class="map1-title">Kaip vadinasi pirmas lietuviškas garsinis marionečių filmas?</span>
+          <button id="pirmas_pirmo2_1" class="mygtukas1" onClick="tei2_1(this)">Storulio sapnas</button>
+          <button id="antras_pirmo2_1" class="mygtukas2" onClick="nei2_1(this)">Silvestras Dūdelė</button>
+          <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+      <!--antras markeris-->
+
+      <div id="surask2_2" class="welcomeDiv" style="display:none;">
+          <span class="map1-title">Iš kokios medžiagos pagamintas Gintaro Karoso kraštovaizdžio meno kūrinys „Kultūra“?</span>
+          <button id="surask2_2" class="surask" onclick="kitas2_2()">Surask Atsakymą</button>
+          <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+      <div id="video2_2" class="welcomeDiv" style="display:none;">
+          <span class="map1-title"></span>
+          <iframe class="video" src="https://www.youtube.com/embed/YDEULMw3xAg">
+      </iframe>
+          <button id="atsakyk2_2" class="atsakyk" onclick="sekantis2_2()">atsakyk</button>
+          <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+      <div id="welcomeDiv2_2" class="welcomeDiv" style="display:none;">
+          <span class="map1-title">Iš kokios medžiagos pagamintas Gintaro Karoso kraštovaizdžio meno kūrinys „Kultūra“?</span>
+          <button id="pirmas_pirmo2_2" class="mygtukas1" onClick="tei2_2(this)">Marmuro šukių</button>
+          <button id="antras_pirmo2_2" class="mygtukas2" onClick="nei2_2(this)">Plytų</button>
+          <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+      </div>
+
+    <!--trecias markeris-->
+
+        <div id="surask2_3" class="welcomeDiv" style="display:none;">
+            <span class="map1-title">Koks senosios Liubavo dvaro vandens malūno turbinos galingumas?</span>
+            <button id="surask2_3" class="surask" onclick="kitas2_3()">Surask Atsakymą</button>
+            <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+        </div>
+
+        <div id="video2_3" class="welcomeDiv" style="display:none;">
+            <span class="map1-title"></span>
+            <iframe class="video" src="https://www.youtube.com/embed/4bqL2b293x0">
+      </iframe>
+            <button id="atsakyk2_3" class="atsakyk" onclick="sekantis2_3()">Atsakyti</button>
+            <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+        </div>
+
+        <div id="welcomeDiv2_3" class="welcomeDiv" style="display:none;">
+            <span class="map1-title">Koks senosios Liubavo dvaro vandens malūno turbinos galingumas?</span>
+            <button id="pirmas_pirmo2_3" class="mygtukas1" onClick="tei2_3(this)">70 arklio galių</button>
+            <button id="antras_pirmo2_3" class="mygtukas2" onClick="nei2_3(this)">12 arklio galkių</button>
+            <button class="uzdaryti" onClick="closeit()">uzdaryti</button>
+        </div>
+
+<!-- pirma grupe mygtukai1-->
+
+    <div id="teisingas" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+<!--mygtukai2-->
+    <div id="teisingas2" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas2" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+<!--mygtukas3-->
+    <div id="teisingas3" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas3" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+<!--antra grupe mygtukas1-->
+    <div id="teisingas2_1" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas2_1" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+<!--mygtukas2-->
+    <div id="teisingas2_2" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas2_2" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+<!--mygtukas3-->
+    <div id="teisingas2_3" class="teisingas" style="display:none;">
+      <span>Tesignai</span>
+    </div>
+    <div id="neteisingas2_3" class="neteisingas" style="display:none;">
+      <span>Neteisingai</span>
+    </div>
+
+
+<script>
+/*pirmos grupes mygtukai*/
+
+  function tei(el) {
+   document.getElementById('teisingas').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo.disabled = true;
+   pirmas_pirmo.disabled = true;
+   marker2.setClickable(true);
+ }
+  function nei() {
+   document.getElementById('neteisingas').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo.disabled = true;
+   pirmas_pirmo.disabled = true;
+   marker2.setClickable(true);
+}
+  function tei2() {
+   document.getElementById('teisingas2').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2.disabled = true;
+   pirmas_pirmo2.disabled = true;
+   marker3.setClickable(true);
+}
+  function nei2() {
+   document.getElementById('neteisingas2').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2.disabled = true;
+   pirmas_pirmo2.disabled = true;
+   marker3.setClickable(true);
+}
+  function tei3() {
+   document.getElementById('teisingas3').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo3.disabled = true;
+   pirmas_pirmo3.disabled = true;
+}
+  function nei3() {
+   document.getElementById('neteisingas3').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo3.disabled = true;
+   pirmas_pirmo3.disabled = true;
+}
+/*antros grupes mygtukai*/
+
+  function tei2_1(el) {
+   document.getElementById('teisingas2_1').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_1.disabled = true;
+   pirmas_pirmo2_1.disabled = true;
+   marker2_2.setClickable(true);
+ }
+  function nei2_1() {
+   document.getElementById('neteisingas2_1').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_1.disabled = true;
+   pirmas_pirmo2_1.disabled = true;
+   marker2_2.setClickable(true);
+}
+  function tei2_2() {
+   document.getElementById('teisingas2_2').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_2.disabled = true;
+   pirmas_pirmo2_2.disabled = true;
+   marker2_3.setClickable(true);
+}
+  function nei2_2() {
+   document.getElementById('neteisingas2_2').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_2.disabled = true;
+   pirmas_pirmo2_2.disabled = true;
+   marker2_3.setClickable(true);
+}
+  function tei2_3() {
+   document.getElementById('teisingas2_3').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_3.disabled = true;
+   pirmas_pirmo2_3.disabled = true;
+}
+  function nei2_3() {
+   document.getElementById('neteisingas2_3').style.display = "block";
+   setTimeout(closeit, 2000)
+   antras_pirmo2_3.disabled = true;
+   pirmas_pirmo2_3.disabled = true;
+}
+
+/*pirmos grupes markeriu vidinis spaudimas*/
+  function kitas(){
+      document.getElementById('surask').setAttribute("style", "display:none");
+      document.getElementById('video').style.display = "inline";
+}
+  function sekantis(){
+      document.getElementById('video').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv').style.display = "inline";
+}
+  function kitas2(){
+      document.getElementById('surask2').setAttribute("style", "display:none");
+      document.getElementById('video2').style.display = "inline";
+}
+  function sekantis2(){
+      document.getElementById('video2').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv2').style.display = "inline";
+}
+  function kitas3(){
+      document.getElementById('surask3').setAttribute("style", "display:none");
+      document.getElementById('video3').style.display = "inline";
+}
+  function sekantis3(){
+      document.getElementById('video3').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv3').style.display = "inline";
+}
+/*antros grupes markeriu vidinis spaudimas*/
+  function kitas2_1(){
+      document.getElementById('surask2_1').setAttribute("style", "display:none");
+      document.getElementById('video2_1').style.display = "inline";
+}
+  function sekantis2_1(){
+      document.getElementById('video2_1').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv2_1').style.display = "inline";
+}
+  function kitas2_2(){
+      document.getElementById('surask2_2').setAttribute("style", "display:none");
+      document.getElementById('video2_2').style.display = "inline";
+}
+  function sekantis2_2(){
+      document.getElementById('video2_2').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv2_2').style.display = "inline";
+}
+  function kitas2_3(){
+      document.getElementById('surask2_3').setAttribute("style", "display:none");
+      document.getElementById('video2_3').style.display = "inline";
+}
+  function sekantis2_3(){
+      document.getElementById('video2_3').setAttribute("style", "display:none");
+      document.getElementById('welcomeDiv2_3').style.display = "inline";
+}
+
+/*uzdarymas*/
+function closeit(){
+  //pirmos grupes pirmas
+   document.getElementById('welcomeDiv').setAttribute("style", "display:none");
+   document.getElementById('teisingas').setAttribute("style", "display:none");
+   document.getElementById('neteisingas').setAttribute("style", "display:none");
+   document.getElementById('video').setAttribute("style", "display:none");
+   document.getElementById('surask').setAttribute("style", "display:none");
+   //pirmos grupes antras
+   document.getElementById('welcomeDiv2').setAttribute("style", "display:none");
+   document.getElementById('teisingas2').setAttribute("style", "display:none");
+   document.getElementById('neteisingas2').setAttribute("style", "display:none");
+   document.getElementById('video2').setAttribute("style", "display:none");
+   document.getElementById('surask2').setAttribute("style", "display:none");
+   //pirmos grupes trecias
+   document.getElementById('welcomeDiv3').setAttribute("style", "display:none");
+   document.getElementById('teisingas3').setAttribute("style", "display:none");
+   document.getElementById('neteisingas3').setAttribute("style", "display:none");
+   document.getElementById('video3').setAttribute("style", "display:none");
+   document.getElementById('surask3').setAttribute("style", "display:none");
+   //antros grupes pirmas
+    document.getElementById('welcomeDiv2_1').setAttribute("style", "display:none");
+    document.getElementById('teisingas2_1').setAttribute("style", "display:none");
+    document.getElementById('neteisingas2_1').setAttribute("style", "display:none");
+    document.getElementById('video2_1').setAttribute("style", "display:none");
+    document.getElementById('surask2_1').setAttribute("style", "display:none");
+    //antros grupes antras
+    document.getElementById('welcomeDiv2_2').setAttribute("style", "display:none");
+    document.getElementById('teisingas2_2').setAttribute("style", "display:none");
+    document.getElementById('neteisingas2_2').setAttribute("style", "display:none");
+    document.getElementById('video2_2').setAttribute("style", "display:none");
+    document.getElementById('surask2_2').setAttribute("style", "display:none");
+    //antros grupes trecias
+    document.getElementById('welcomeDiv2_3').setAttribute("style", "display:none");
+    document.getElementById('teisingas2_3').setAttribute("style", "display:none");
+    document.getElementById('neteisingas2_3').setAttribute("style", "display:none");
+    document.getElementById('video2_3').setAttribute("style", "display:none");
+    document.getElementById('surask2_3').setAttribute("style", "display:none");
+
+}
+
+function initMap(){
+  //zemelapio nustatymai
+  var options = {
+        zoom:8,
+          center:{lat:55.28833,lng:23.97472},
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+          //styles:
+        }
+
+  //naujas zemelapis
+  var map = new google.maps.Map(document.getElementById('map'), options);
+  var image = {
+    url: '03.png',
+    scaledSize : new google.maps.Size(60, 60),
+    };
+/*pirmos grupes markeriai*/
+  grupe1 = new google.maps.Marker({
+    position: {lat:55.7254348, lng:21.9248218},
+    map:map,
+    icon:image,
+    });
+
+    google.maps.event.addListener(grupe1, 'click', function() {
+        map.setCenter(this.getPosition());
+        map.setZoom(9);
+        marker1.setVisible(true);
+        marker2.setVisible(true);
+        marker3.setVisible(true);
+        grupe1.setVisible(false);
+        grupe2.setVisible(false);
+      });
+
+  marker1 = new google.maps.Marker({
+    position: {lat:55.9752076, lng:22.2334801},
+    map:map,
+    icon: "01.png",
+    visible: false
+    });
+
+  google.maps.event.addListener(marker1, 'click', function() {
+        closeit();
+        showDiv();
+      });
+      function showDiv() {
+       document.getElementById('surask').style.display = "inline";
+}
+
+  marker2 = new google.maps.Marker({
+      position: {lat:55.9180421,lng:21.8423886},
+      map:map,
+      clickable: false,
+      visible: false,
+      icon: "01.png"
+      });
+
+    google.maps.event.addListener(marker2, 'click', function() {
+          closeit();
+          showDiv1();
+        });
+        function showDiv1() {
+         document.getElementById('surask2').style.display = "inline";
+}
+
+  marker3 = new google.maps.Marker({
+    position: {lat:55.7167957,lng:21.0976506},
+    map:map,
+    clickable: false,
+    visible: false,
+    icon: "01.png"
+    });
+
+  google.maps.event.addListener(marker3, 'click', function() {
+        closeit();
+        showDiv2();
+      });
+      function showDiv2() {
+       document.getElementById('surask3').style.display = "inline";
+}
+  /*antros grupes markeriai*/
+
+       grupe2 = new google.maps.Marker({
+         position: {lat:54.7008021, lng:25.1129521},
+         map:map,
+         icon:image,
+         });
+
+         google.maps.event.addListener(grupe2, 'click', function() {
+             map.setCenter(this.getPosition());
+             map.setZoom(10);
+             marker2_1.setVisible(true);
+             marker2_2.setVisible(true);
+             marker2_3.setVisible(true);
+             grupe2.setVisible(false);
+             grupe1.setVisible(false);
+           });
+
+       marker2_1 = new google.maps.Marker({
+         position: {lat:54.6812732, lng:25.2786774},
+         map:map,
+         icon: "01.png",
+         visible: false
+         });
+
+       google.maps.event.addListener(marker2_1, 'click', function() {
+             closeit();
+             showDiv2_1();
+           });
+           function showDiv2_1() {
+            document.getElementById('surask2_1').style.display = "inline";
+       }
+
+       marker2_2 = new google.maps.Marker({
+           position: {lat:54.8308378,lng:25.3496073},
+           map:map,
+           clickable: false,
+           visible: false,
+           icon: "01.png"
+           });
+
+         google.maps.event.addListener(marker2_2, 'click', function() {
+               closeit();
+               showDiv2_2();
+             });
+             function showDiv2_2() {
+              document.getElementById('surask2_2').style.display = "inline";
+       }
+
+       marker2_3 = new google.maps.Marker({
+         position: {lat:54.8508078,lng:25.3392371},
+         map:map,
+         clickable: false,
+         visible: false,
+         icon: "01.png"
+         });
+
+       google.maps.event.addListener(marker2_3, 'click', function() {
+             closeit();
+             showDiv2_3();
+           });
+           function showDiv2_3() {
+            document.getElementById('surask2_3').style.display = "inline";
+       }
+
+
+google.maps.event.addDomListener(window, "load", initMap);
+}
+    </script>
+
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLxTk1MflrsjO3Xkm3sIP8pZVkuBwieeI&libraries=geometry&callback=initMap">
+
+        </script>
+    </body>
+    </html>
